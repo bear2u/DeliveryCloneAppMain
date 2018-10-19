@@ -1,12 +1,15 @@
 package kr.pe.deliverycloneapp2
 
 import android.app.Application
-import android.util.Log
+import com.google.firebase.FirebaseApp
+import timber.log.Timber
 
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        Log.d("KTH", "init");
+        FirebaseApp.initializeApp(this)
+
+        Timber.plant(Timber.DebugTree())
     }
 
 }

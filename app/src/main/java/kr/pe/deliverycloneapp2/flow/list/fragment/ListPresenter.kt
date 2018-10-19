@@ -8,7 +8,7 @@ class ListPresenter : BaseMvpPresenterImpl<ListContract.View>(), ListContract.Pr
     override fun getStores(type: String?) {
         val items = arrayListOf<Store>()
         0.rangeTo(10).forEach {
-            items.add(Store(it, "no_1", "",0.0, 0, it))
+            items.add(Store(categoryName = "치킨"))
         }
 
         Log.d("gdg", "mView : $mView")

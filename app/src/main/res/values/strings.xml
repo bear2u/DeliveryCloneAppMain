@@ -6,4 +6,15 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="menus">
+        <item>전체</item>
+        <item>계절메뉴</item>
+        <item>치킨</item>
+        <item>중식</item>
+        <item>피자</item>
+        <item>족발·보쌈</item>
+        <item>도시락·죽·페스트푸드</item>
+        <item>일식·돈까스·회</item>
+    </string-array>
 </resources>

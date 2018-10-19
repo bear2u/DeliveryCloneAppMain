@@ -1,5 +1,6 @@
 package kr.pe.deliverycloneapp2.flow.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
@@ -7,7 +8,9 @@ import android.util.Log
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_list.*
 import kr.pe.deliverycloneapp2.R
+import kr.pe.deliverycloneapp2.flow.register.RegisterActivity
 import kr.pe.deliverycloneapp2.model.Category
+import timber.log.Timber
 
 class ListActivity : AppCompatActivity() {
 
@@ -19,11 +22,15 @@ class ListActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.elevation = 0f
 
         category = intent.getParcelableExtra("item")
         title = category?.title
 
-        Log.d("gdg", "item : $category")
+        fab.setOnClickListener {
+            Timber.d("clicked fab")
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
 
 //        generateSampleData()
 
@@ -33,9 +40,10 @@ class ListActivity : AppCompatActivity() {
     }
 
     private fun initTab() {
-        tabLayout.addTab(tabLayout.newTab().setText("전체"))
-        tabLayout.addTab(tabLayout.newTab().setText("치킨"))
-        tabLayout.addTab(tabLayout.newTab().setText("피자"))
+
+        resources.getStringArray(R.array.menus).forEach {
+            tabLayout.addTab(tabLayout.newTab().setText(it))
+        }
     }
 
     private fun initViewPager() {

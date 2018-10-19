@@ -1,6 +1,7 @@
 package kr.pe.deliverycloneapp2.utils
 
 import android.support.v7.widget.RecyclerView
+import java.util.*
 
 fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
     itemView.setOnClickListener {
@@ -8,3 +9,5 @@ fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> 
     }
     return this
 }
+
+fun getUUID() : String = UUID.randomUUID().toString()
