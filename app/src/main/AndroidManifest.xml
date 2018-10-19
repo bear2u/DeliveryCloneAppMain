@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".flow.list.ListActivity"/>
-        <activity android:name=".flow.register.RegisterActivity">
+        <activity android:name=".flow.register.RegisterActivity" android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
     </application>
 

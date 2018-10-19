@@ -9,10 +9,9 @@
         android:padding="10dp"
 >
 
-    <ImageButton android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
+    <ImageView android:layout_width="100dp"
+                 android:layout_height="100dp"
                  android:src="@drawable/no_image_icon"
-                 android:background="@null"
                  app:layout_constraintStart_toStartOf="parent"
                  android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
                  android:layout_marginEnd="8dp" android:layout_marginBottom="392dp"

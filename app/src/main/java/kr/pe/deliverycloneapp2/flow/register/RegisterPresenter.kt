@@ -18,12 +18,14 @@ class RegisterPresenter : BaseMvpPresenterImpl<RegisterContract.View>(), Registe
     }
 
 
-    override fun register(store: Store) {
+    override fun register(uri : Uri?, store: Store) {
         store.apply {
             id = getUUID()
         }
 
-        val disposable = repository.register(store)
+        val disposable =
+            repository.uploadImage(uri)
+            repository.register(store)
             .subscribeBy(
                 onComplete = {
                     mView?.registerDone()
@@ -34,17 +36,17 @@ class RegisterPresenter : BaseMvpPresenterImpl<RegisterContract.View>(), Registe
 
     }
 
-    override fun uploadImage(uri: Uri) {
-        val disposable = repository.uploadImage(uri)
-            ?.subscribe {
-                mView?.uploadImageDone(it.toString())
-            }
-
-        disposable?.let {
-            compositeDisposable.add(it)
-        }
-
-    }
+//    override fun uploadImage(uri: Uri) {
+//        val disposable = repository.uploadImage(uri)
+//            ?.subscribe {
+//                mView?.uploadImageDone(it.toString())
+//            }
+//
+//        disposable?.let {
+//            compositeDisposable.add(it)
+//        }
+//
+//    }
 
     override fun detachView() {
         super.detachView()
