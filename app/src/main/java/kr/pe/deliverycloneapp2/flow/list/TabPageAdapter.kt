@@ -5,13 +5,13 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import kr.pe.deliverycloneapp2.flow.list.fragment.ListFrag
 
-class TabPageAdapter(val fm: FragmentManager, val tabCount: Int) : FragmentStatePagerAdapter(fm) {
+class TabPageAdapter(fm: FragmentManager, private val menus : Array<String>) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        return ListFrag()
+        return ListFrag.newInstance(menus[position])
     }
 
     override fun getCount(): Int {
-        return tabCount
+        return menus.size
     }
 }

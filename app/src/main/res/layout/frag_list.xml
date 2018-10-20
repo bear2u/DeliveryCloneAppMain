@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
+    <kr.pe.deliverycloneapp2.utils.EmptyRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listRecyclerView"
         />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="no items"
+            android:textSize="36sp" />
+
+</RelativeLayout>

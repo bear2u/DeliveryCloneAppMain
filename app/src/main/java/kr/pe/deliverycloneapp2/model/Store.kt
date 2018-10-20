@@ -7,5 +7,5 @@ data class Store(
         var star : Double? = null,
         var review : Int? = null,
         var priority: Int? = null,
-        var categoryName: String
+        var categoryName: String? = null
 )

@@ -1,13 +1,14 @@
 package kr.pe.deliverycloneapp2.flow.register
 
 import android.net.Uri
+import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import kr.pe.deliverycloneapp2.model.Store
 import kr.pe.deliverycloneapp2.mvp.BaseMvpPresenterImpl
 import kr.pe.deliverycloneapp2.repository.RepositoryImpl
 import kr.pe.deliverycloneapp2.utils.getUUID
-import timber.log.Timber
 
 class RegisterPresenter : BaseMvpPresenterImpl<RegisterContract.View>(), RegisterContract.Presenter {
 
@@ -23,9 +24,20 @@ class RegisterPresenter : BaseMvpPresenterImpl<RegisterContract.View>(), Registe
             id = getUUID()
         }
 
-        val disposable =
+        val imageObservable : Maybe<Uri>? = uri?.let{
             repository.uploadImage(uri)
-            repository.register(store)
+        }
+
+        val registerObservable = imageObservable
+            ?.map {
+                store.apply {
+                    this.thumbnail = it.toString()
+                }
+            }
+            ?.flatMapCompletable(::registerProc)
+            ?:registerProc(store)
+
+        val disposable = registerObservable
             .subscribeBy(
                 onComplete = {
                     mView?.registerDone()
@@ -33,7 +45,10 @@ class RegisterPresenter : BaseMvpPresenterImpl<RegisterContract.View>(), Registe
             )
 
         compositeDisposable.add(disposable)
+    }
 
+    fun registerProc(store : Store): Completable {
+        return repository.register(store)
     }
 
 //    override fun uploadImage(uri: Uri) {

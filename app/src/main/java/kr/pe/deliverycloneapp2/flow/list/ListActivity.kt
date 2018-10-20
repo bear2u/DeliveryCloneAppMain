@@ -16,6 +16,8 @@ class ListActivity : AppCompatActivity() {
 
     var category : Category? = null
 
+    lateinit var items : Array<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
@@ -32,7 +34,7 @@ class ListActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-//        generateSampleData()
+        items = resources.getStringArray(R.array.menus)
 
         initTab()
         initViewPager()
@@ -41,13 +43,13 @@ class ListActivity : AppCompatActivity() {
 
     private fun initTab() {
 
-        resources.getStringArray(R.array.menus).forEach {
+        items.forEach {
             tabLayout.addTab(tabLayout.newTab().setText(it))
         }
     }
 
     private fun initViewPager() {
-        val pagerAdapter = TabPageAdapter(supportFragmentManager, tabLayout.tabCount)
+        val pagerAdapter = TabPageAdapter(supportFragmentManager, items)
         pager.adapter = pagerAdapter
         pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
 
@@ -64,6 +66,8 @@ class ListActivity : AppCompatActivity() {
                 pager.currentItem = tab.position
             }
         })
+
+        pager.currentItem = items.indexOf(category?.title)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

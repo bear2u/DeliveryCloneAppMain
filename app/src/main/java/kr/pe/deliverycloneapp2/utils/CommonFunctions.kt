@@ -1,5 +1,6 @@
 package kr.pe.deliverycloneapp2.utils
 
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import java.util.*
 
@@ -11,3 +12,5 @@ fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> 
 }
 
 fun getUUID() : String = UUID.randomUUID().toString()
+
+fun getFirebaseStoragePath(uri: Uri) : String = "https://firebasestorage.googleapis.com/$uri"

@@ -20,4 +20,8 @@ class RepositoryImpl {
     fun uploadImage(uri: Uri): Maybe<Uri>? {
         return FirebaseRepository.uploadImage(uri)
     }
+
+    fun getStores(type: String) : Maybe<MutableList<Store>>{
+        return FirebaseRepository.getStores(type)
+    }
 }

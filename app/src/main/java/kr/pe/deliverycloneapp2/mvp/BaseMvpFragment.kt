@@ -11,6 +11,8 @@ import android.widget.Toast
 abstract class BaseMvpFragment<in V : BaseMvpView, T : BaseMvpPresenter<V>>
     : Fragment(), BaseMvpView {
 
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
     }

@@ -17,4 +17,6 @@ interface Source {
     fun register(store: Store) : Completable
 
     fun uploadImage(uri: Uri) : Maybe<Uri>?
+
+    fun getStores(type: String) : Maybe<MutableList<Store>>
 }

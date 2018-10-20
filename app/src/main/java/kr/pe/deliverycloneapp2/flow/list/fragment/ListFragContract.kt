@@ -4,12 +4,12 @@ import kr.pe.deliverycloneapp2.model.Store
 import kr.pe.deliverycloneapp2.mvp.BaseMvpPresenter
 import kr.pe.deliverycloneapp2.mvp.BaseMvpView
 
-object ListContract {
+object ListFragContract {
     interface View: BaseMvpView {
-        fun updateList(items: ArrayList<Store>)
+        fun updateList(items: MutableList<Store>)
     }
 
     interface Presenter: BaseMvpPresenter<View> {
-        fun getStores(type: String?)
+        fun getStores(type: String)
     }
 }

@@ -24,4 +24,8 @@ object NetworkRepsitory : Source {
     override fun uploadImage(uri: Uri): Maybe<Uri>? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun getStores(type: String): Maybe<MutableList<Store>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

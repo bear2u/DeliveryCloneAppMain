@@ -3,6 +3,8 @@ package kr.pe.deliverycloneapp2.flow.register
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mlsdev.rximagepicker.RxImagePicker
@@ -48,7 +50,8 @@ class RegisterActivity : BaseMvpActivity<RegisterContract.View, RegisterContract
     }
 
     fun registerProc() {
-
+        btnRegister.visibility = View.GONE
+        registerPogressBar.visibility = View.VISIBLE
         val store = Store(
             name=tv_title.text.toString(),
             categoryName = spinner.selectedItem.toString()
@@ -79,7 +82,10 @@ class RegisterActivity : BaseMvpActivity<RegisterContract.View, RegisterContract
     // TODO 등록 완료
     // TODO
     override fun registerDone() {
-
+        btnRegister.visibility = View.VISIBLE
+        registerPogressBar.visibility = View.GONE
+        Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
+        finish()
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
