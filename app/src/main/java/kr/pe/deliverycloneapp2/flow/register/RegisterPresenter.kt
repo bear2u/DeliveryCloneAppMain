@@ -51,18 +51,6 @@ class RegisterPresenter : BaseMvpPresenterImpl<RegisterContract.View>(), Registe
         return repository.register(store)
     }
 
-//    override fun uploadImage(uri: Uri) {
-//        val disposable = repository.uploadImage(uri)
-//            ?.subscribe {
-//                mView?.uploadImageDone(it.toString())
-//            }
-//
-//        disposable?.let {
-//            compositeDisposable.add(it)
-//        }
-//
-//    }
-
     override fun detachView() {
         super.detachView()
         compositeDisposable.clear()

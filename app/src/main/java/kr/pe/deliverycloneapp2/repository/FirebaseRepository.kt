@@ -35,27 +35,14 @@ object FirebaseRepository : Source {
     override fun uploadImage(uri: Uri): Maybe<Uri>? {
         val ref = firebaseStorage.reference.child(getUUID())
 
-//        ref.putFile(uri)
-//            .addOnSuccessListener {
-//                Timber.d("successed $it")
-//            }
-
-//        ref.updateMetadata(getImageMetaData())
         return RxFirebaseStorage.putFile(ref, uri)
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(Schedulers.io())
             .flatMapMaybe {
                 RxFirebaseStorage.getDownloadUrl(ref)
             }
     }
 
-    fun getImageMetaData() =  StorageMetadata.Builder().setContentType("image/jpg").build()
-
     override fun getStores(type: String): Maybe<MutableList<Store>> {
         val collectionRef = firestoreApp.collection(type)
         return RxFirestore.getCollection(collectionRef, Store::class.java)
-            .doOnError {
-                Timber.e(it)
-            }
     }
 }

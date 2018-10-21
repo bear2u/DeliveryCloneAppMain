@@ -77,10 +77,6 @@ class RegisterActivity : BaseMvpActivity<RegisterContract.View, RegisterContract
         compositeDisposable.add(disposable)
     }
 
-    // TODO 등록화면 개발
-    // TODO 이미지 피커 개발
-    // TODO 등록 완료
-    // TODO
     override fun registerDone() {
         btnRegister.visibility = View.VISIBLE
         registerPogressBar.visibility = View.GONE

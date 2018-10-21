@@ -47,7 +47,6 @@ class ListRecylerViewAdapter(
     }
 
     fun updateItem(items : List<Store>) {
-        Log.d("gdg", "items : ${items}")
         this.items = items
         notifyDataSetChanged()
     }
