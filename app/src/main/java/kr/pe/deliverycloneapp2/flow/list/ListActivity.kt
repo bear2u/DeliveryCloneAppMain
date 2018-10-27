@@ -1,5 +1,6 @@
 package kr.pe.deliverycloneapp2.flow.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v7.app.AppCompatActivity
@@ -7,11 +8,15 @@ import android.util.Log
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_list.*
 import kr.pe.deliverycloneapp2.R
+import kr.pe.deliverycloneapp2.flow.register.RegisterActivity
 import kr.pe.deliverycloneapp2.model.Category
+import timber.log.Timber
 
 class ListActivity : AppCompatActivity() {
 
-    var category : Category? = null
+    lateinit var category: Category
+
+    lateinit var menus : Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,33 +24,39 @@ class ListActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.elevation = 0f
 
-        category = intent.getParcelableExtra("item")
-        title = category?.title
-
-        Log.d("gdg", "item : $category")
-
-//        generateSampleData()
+        category = intent.getParcelableExtra<Category>("item")
+        menus = resources.getStringArray(R.array.menus)
+        Timber.d(category.toString())
 
         initTab()
         initViewPager()
 
+        fab.setOnClickListener {
+            startActivity(
+                Intent(this, RegisterActivity::class.java)
+            )
+        }
     }
 
     private fun initTab() {
-        tabLayout.addTab(tabLayout.newTab().setText("전체"))
-        tabLayout.addTab(tabLayout.newTab().setText("치킨"))
-        tabLayout.addTab(tabLayout.newTab().setText("피자"))
+
+        menus.forEach {
+            tabLayout.addTab(tabLayout.newTab().setText(it))
+        }
     }
 
     private fun initViewPager() {
-        val pagerAdapter = TabPageAdapter(supportFragmentManager, tabLayout.tabCount)
-        pager.adapter = pagerAdapter
-        pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+        viewPager.apply {
+            this.adapter = TabPagerAdapter(supportFragmentManager, menus, 3)
+        }
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+
+        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+
             override fun onTabReselected(tab: TabLayout.Tab?) {
-
+                viewPager.currentItem = tab?.position ?: 0
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -53,14 +64,18 @@ class ListActivity : AppCompatActivity() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab) {
-                pager.currentItem = tab.position
+
+                viewPager.currentItem = tab.position
             }
         })
+
+//        viewPager.currentItem = menus.indexOf(category.title)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if(item?.itemId == android.R.id.home)
-            finish()
+        finish()
         return super.onOptionsItemSelected(item)
     }
+
 }

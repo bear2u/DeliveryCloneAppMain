@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="menus">
+        <item>전체</item>
+        <item>계절메뉴</item>
+        <item>치킨</item>
+        <item>중식</item>
+        <item>피자</item>
+        <item>족발·보쌈</item>
+        <item>도시락·죽·페스트푸드</item>
+        <item>일식·돈까스·회</item>
+    </string-array>
+</resources>

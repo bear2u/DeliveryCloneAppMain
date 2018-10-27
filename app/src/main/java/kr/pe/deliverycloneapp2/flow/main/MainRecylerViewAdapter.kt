@@ -26,7 +26,7 @@ class MainRecylerViewAdapter(
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.source.setImageResource(items[position].resId)
+        holder.source.setImageResource(items[position].resId ?: -1)
         holder.source.setBackgroundResource(items[position].background)
     }
 

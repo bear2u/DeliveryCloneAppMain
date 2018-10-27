@@ -1,12 +1,14 @@
 package kr.pe.deliverycloneapp2
 
 import android.app.Application
-import android.util.Log
+import timber.log.Timber
 
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        Log.d("KTH", "init");
+        if(BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 
 }

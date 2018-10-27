@@ -1,10 +1,12 @@
 package kr.pe.deliverycloneapp2.model
 
 data class Store(
-        val no: Int,
-        val name: String,
-        val thumbnail : String,
-        val star : Double,
-        val review : Int,
-        val priority: Int
+        var id: String? = null,
+        var title: String? =null,
+        var content: String? =null,
+        var thumbnail : String? =null,
+        var star : Double? =null,
+        var review : Int? =null,
+        var priority: Int? =null,
+        var category: Category? = null
 )
